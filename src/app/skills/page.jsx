@@ -31,9 +31,9 @@ export default function Skills() {
 
         <div className="flex flex-wrap justify-center gap-4 text-center">
           <CardComponent label="HTML" src="/html.jpg" />
-          <CardComponent label="CSS" src="/css.jpg" />
+          <CardComponent label="CSS" src="/css.jpeg" />
           <CardComponent label="JS" src="/js.webp" />
-          <CardComponent label="Bootstrap" src="/boot.jpg" />
+          <CardComponent label="Bootstrap" src="/boot.jpeg" />
         </div>
 
         {/* ===== Frontend Mastery ===== */}
@@ -51,8 +51,8 @@ export default function Skills() {
         <div className="flex flex-wrap justify-center gap-4 text-center">
           <CardComponent label="TS" src="/ts.png" />
           <CardComponent label="React" src="/react.png" />
-          <CardComponent label="Tailwind CSS" src="/tailwand.jpg" />
-          <CardComponent label="Next.JS" src="/next.png" />
+          <CardComponent label="Tailwind CSS" src="/tailwand.png" />
+          <CardComponent label="Next.JS" src="/next.jpg" />
           <CardComponent label="Framer Motion" src="/framer.jpeg" />
         </div>
 
@@ -70,7 +70,7 @@ export default function Skills() {
 
         <div className="flex flex-wrap justify-center gap-4 text-center">
           <CardComponent label="Git" src="/git.png" />
-          <CardComponent label="Firebase" src="/fire.jpeg" />
+          <CardComponent label="Firebase" src="/fire.png" />
         </div>
 
       </div>

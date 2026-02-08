@@ -9,6 +9,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Button, TextareaAutosize, TextField } from "@mui/material";
+import toast from "react-hot-toast";
 
 const inputStyle = {
   "& .MuiOutlinedInput-root": {
@@ -46,11 +47,12 @@ export default function Contact() {
       )
       .then(
         () => {
-          alert("Message sent successfully ✅");
+          toast.success("Message sent successfully ✅");
+
           formRef.current.reset();
         },
         (error) => {
-          alert("Something went wrong ❌");
+          toast.error("Something went wrong ❌");
           console.error(error);
         },
       );
@@ -97,6 +99,75 @@ export default function Contact() {
               </div>
             </div>
           ))}
+          <hr className=" mt-8 text-[#252D3C]" />
+          <div className=" flex flex-wrap gap-5 mt-5">
+            <a
+              href="https://github.com/yousefelsayed18"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+    p-3 w-[25%] text-center rounded-xl cursor-pointer
+    bg-[#271743] text-[#C27AFF]
+
+    transition-all duration-300 ease-out
+    hover:bg-[#A84CFF]
+    hover:text-white
+    hover:scale-105
+  "
+            >
+              <div className="flex justify-center">
+                <GitHubIcon />
+              </div>
+            </a>
+            <a
+              className="    p-3 w-[25%] text-center rounded-xl cursor-pointer
+    bg-[#271743] text-[#C27AFF]
+
+    transition-all duration-300 ease-out
+    hover:bg-[#A84CFF]
+    hover:text-white
+    hover:scale-105"
+              href="https://www.linkedin.com/in/yousef-elsayed-13580b309"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div>
+                <LinkedInIcon />
+              </div>
+            </a>
+            <a
+              className="    p-3 w-[25%] text-center rounded-xl cursor-pointer
+    bg-[#271743] text-[#C27AFF]
+
+    transition-all duration-300 ease-out
+    hover:bg-[#A84CFF]
+    hover:text-white
+    hover:scale-105"
+              href="https://www.facebook.com/yousef.elsayed.7792?rdid=zwDe5Aisf8M7cl9B&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Dj3zMaWa8%2F#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div>
+                <FacebookIcon />
+              </div>
+            </a>
+            <a
+              className="    p-3 w-[25%] text-center rounded-xl cursor-pointer
+    bg-[#271743] text-[#C27AFF]
+
+    transition-all duration-300 ease-out
+    hover:bg-[#A84CFF]
+    hover:text-white
+    hover:scale-105"
+              href="https://wa.me/201283957041?text=Hello%20Yousef,%20I%20visited%20your%20portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div>
+                <WhatsAppIcon />
+              </div>
+            </a>
+          </div>
         </div>
 
         {/* ===== Form ===== */}
@@ -132,7 +203,7 @@ export default function Contact() {
             </div>
 
             <TextareaAutosize
-            re
+              re
               name="message"
               minRows={5}
               placeholder="Message"
