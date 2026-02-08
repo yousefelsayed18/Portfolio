@@ -4,7 +4,7 @@ import { ProjectData } from "../_Component/stateArr/stateArr";
 
 export default function Projects() {
   return (
-    <section className=" mt-10 w-[90%] m-auto">
+    <section className=" mt-15 w-[90%] m-auto">
       <div className=" container">
         <div className=" mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold relative inline-block text-center">
