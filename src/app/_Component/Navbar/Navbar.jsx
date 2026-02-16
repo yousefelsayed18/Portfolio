@@ -13,7 +13,7 @@ import me from "../../Images/me.png";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@mui/material";
-
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 const navLinks = [
   { name: "About", path: "/about" },
   { name: "Projects", path: "/projects" },
@@ -84,9 +84,7 @@ function Navbar() {
                     rel="noopener noreferrer"
                     className=" underline text-green-500"
                   >
-                    <Button variant="contained" color="success">
-                      Contact Me
-                    </Button>
+                    <WhatsAppIcon sx={{ fontSize: "40px" }} />
                   </a>
                 </Typography>
               </MenuItem>
@@ -113,9 +111,7 @@ function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="contained" color="success">
-                Contact Me
-              </Button>
+              <WhatsAppIcon sx={{ fontSize: "40px" }} />
             </a>
           </Box>
         </Toolbar>

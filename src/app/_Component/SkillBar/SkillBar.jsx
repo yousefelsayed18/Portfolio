@@ -23,6 +23,7 @@ export default function SkillBar({ title, value }) {
           backgroundColor: "#ffff",
           "& .MuiLinearProgress-bar": {
             borderRadius: 5,
+            backgroundColor:"#A84CFF"
            
           },
         }}

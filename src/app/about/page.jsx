@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import BrushIcon from "@mui/icons-material/Brush";
 import DrawIcon from "@mui/icons-material/Draw";
@@ -10,11 +10,9 @@ import { motion } from "framer-motion";
 import { stats } from "../_Component/stateArr/stateArr";
 
 export default function About() {
-
-
   const bar = [
     { value: "90", title: "Web Development" },
-    { value: "75", title: "Mobile Development" },
+    { value: "95", title: "Api Integration" },
     { value: "85", title: "UI/UX Design" },
   ];
 
@@ -22,9 +20,9 @@ export default function About() {
     <section className=" bg-[#0B0D19] py-20">
       <motion.section
         initial={{ opacity: 0, y: -50 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, ease: "easeOut" }}
-  viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
       >
         <div className="w-[90%] mx-auto">
           {/* Title */}
@@ -46,7 +44,7 @@ export default function About() {
                 Frontend Developer
               </h3>
 
-              <p className="mt-6 text-gray-700 leading-relaxed">
+              <p className="mt-6 text-white leading-relaxed">
                 I’m Yousef Elsayed, a Frontend Developer specialized in building
                 modern, high-performance web applications using React and
                 Next.js. I focus on creating clean, responsive, and
@@ -54,7 +52,7 @@ export default function About() {
                 performance and accessibility.
               </p>
 
-              <p className="mt-4 text-gray-700 leading-relaxed">
+              <p className="mt-4 text-white leading-relaxed">
                 I enjoy transforming ideas and designs into real, scalable
                 products, and I’m always eager to learn new technologies and
                 improve my skills.
@@ -63,15 +61,15 @@ export default function About() {
               {/* Services */}
               <div className="mt-8 flex flex-col gap-4 items-center lg:items-start">
                 <div className="flex items-center gap-3">
-                  <BrushIcon className="text-gray-400" />
+                  <BrushIcon className="text-[#A84CFF]" />
                   <span>Frontend Development</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <DrawIcon className="text-gray-400" />
+                  <DrawIcon className="text-[#A84CFF]" />
                   <span>UI/UX Design</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <ArchitectureIcon className="text-gray-400" />
+                  <ArchitectureIcon className="text-[#A84CFF]" />
                   <span>Web Performance Optimization</span>
                 </div>
               </div>
@@ -83,7 +81,7 @@ export default function About() {
               <div className="flex flex-wrap gap-6 justify-center mb-10 text-center">
                 {stats.map((stat, index) => (
                   <CardComponent
-                    key={index}
+                    key={index}f
                     value={stat.value}
                     label={stat.label}
                   />
@@ -93,7 +91,7 @@ export default function About() {
               {/* Skills */}
               <div className="space-y-6">
                 {bar.map((item, index) => (
-                  <SkillBar key={index} value={item.value} title={item.title} />
+                  <SkillBar sx={{backgroundClolor:"red" , color:"red"}} key={index} value={item.value} title={item.title} />
                 ))}
               </div>
 

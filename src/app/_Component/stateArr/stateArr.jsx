@@ -8,8 +8,8 @@ import project7 from "../../Images/p7.png";
 import project8 from "../../Images/p8.png";
 import project9 from "../../Images/p9.png";
 export const stats = [
-  { value: "30+", label: "Projects Completed" },
-  { value: "1.5+", label: "Years Experience" },
+  { value: "20+", label: "Projects Completed" },
+  { value: "1+", label: "Years Experience" },
   { value: "100%", label: "Client Satisfaction" },
 ];
 
@@ -32,14 +32,7 @@ export const ProjectData = [
     src: project2,
     url: "https://movie-app-ku2h.vercel.app/",
   },
-  {
-    title: "E-commerce Store",
-    discribtion:
-      "A responsive e-commerce frontend built with React, featuring product listings, product details, and a functional shopping cart. The app focuses on clean UI, smooth navigation, and a user-friendly shopping experience.",
-    feactuers: "React JavaScript Responsive UIVercel Deployment",
-    src: project8,
-    url: "https://ecommerce-project-six-pearl.vercel.app/",
-  },
+
   {
     title: "React Login",
     discribtion:
