@@ -7,7 +7,7 @@ import project6 from "../../Images/p6.png";
 import project7 from "../../Images/p7.png";
 import project8 from "../../Images/p8.png";
 import project9 from "../../Images/p9.png";
-import sayil from "../../Images/sayilAdmin.png"
+import perume from "../../Images/perfume.png"
 export const stats = [
   { value: "20+", label: "Projects Completed" },
   { value: "1+", label: "Years Experience" },
@@ -15,14 +15,15 @@ export const stats = [
 ];
 
 export const ProjectData = [
+
   {
-    title: "Admin Dashboard",
+    title: "Perfume Store E-commerce Website",
     discribtion:
-      "Modern Admin Dashboard built with Next.js featuring authentication, responsive design, and dynamic data management.",
+      "Built a responsive e-commerce app with product listing, cart, authentication, and API integration.",
     feactuers:
-      "Secure authentication system / Interactive dashboard with dynamic data /Full CRUD operations for data management /Responsive design across all devices/Built with Next.js for high performance/Multi-language support (Arabic & English)/Reusable and scalable component architecture",
-    src: sayil,
-    url: "https://sayil-admin-dashboard.vercel.app/ar/login",
+      "Features: Responsive UI, dynamic products, search & filtering, cart system, user authentication, API integration.",
+    src: perume,
+    url: "https://perfume-store-ajx2.vercel.app/",
   },
   {
     title: "SaaS Landing Page",
