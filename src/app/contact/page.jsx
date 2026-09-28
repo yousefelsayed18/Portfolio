@@ -55,7 +55,7 @@ const fieldSlide = {
 };
 
 const contactInfo = [
-  { icon: <LocationPinIcon />, title: "Location", value: "Tanta, Egypt" },
+  { icon: <LocationPinIcon />, title: "Location", value: "Cairo, Egypt" },
   { icon: <EmailIcon />, title: "Email", value: "yousefabdelmonem18@gmail.com" },
   { icon: <LocalPhoneIcon />, title: "Phone", value: "01283957041" },
 ];
