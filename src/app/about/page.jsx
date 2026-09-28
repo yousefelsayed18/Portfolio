@@ -2,8 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import BrushIcon from "@mui/icons-material/Brush";
 import DrawIcon from "@mui/icons-material/Draw";
-import CardComponent from "../_Component/CardComponent/CardComponent";
-import SkillBar from "../_Component/SkillBar/SkillBar";
 import { Button } from "@mui/material";
 import ArchitectureIcon from "@mui/icons-material/Architecture";
 import { motion, useInView } from "framer-motion";
@@ -43,8 +41,8 @@ const curtainRight = {
   visible: { clipPath: "inset(0 0 0 0%)", opacity: 1, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
 };
 const fadeUp = {
-  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.13 } } };
 const staggerFast = { hidden: {}, visible: { transition: { staggerChildren: 0.09 } } };
@@ -53,8 +51,8 @@ const lineGrow = {
   visible: { scaleX: 1, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 } },
 };
 const serviceItem = {
-  hidden: { opacity: 0, x: -30, filter: "blur(4px)" },
-  visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, x: -30 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
 const cardPop = {
   hidden: { opacity: 0, scale: 0.7, rotate: -4 },
@@ -69,11 +67,6 @@ const services = [
   { icon: <BrushIcon className="text-[#A84CFF]" />, label: "Frontend Development" },
   { icon: <DrawIcon className="text-[#A84CFF]" />, label: "UI/UX Design" },
   { icon: <ArchitectureIcon className="text-[#A84CFF]" />, label: "Web Performance Optimization" },
-];
-const bar = [
-  { value: "90", title: "Web Development" },
-  { value: "95", title: "Api Integration" },
-  { value: "85", title: "UI/UX Design" },
 ];
 
 export default function About() {
@@ -93,10 +86,10 @@ export default function About() {
       />
 
       {/* Floating orbs */}
-      <motion.div animate={{ y: [0, -25, 0], opacity: [0.04, 0.08, 0.04] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-[#A84CFF] blur-3xl" />
-      <motion.div animate={{ y: [0, 20, 0], opacity: [0.03, 0.06, 0.03] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="pointer-events-none absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full bg-[#5F4BFF] blur-3xl" />
+      <div className="orb-fade pointer-events-none absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-[#A84CFF] blur-3xl"
+        style={{ "--dy": "-25px", "--o1": 0.04, "--o2": 0.08, "--dur": "8s" }} />
+      <div className="orb-fade pointer-events-none absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full bg-[#5F4BFF] blur-3xl"
+        style={{ "--dy": "20px", "--o1": 0.03, "--o2": 0.06, "--dur": "10s", "--delay": "2s" }} />
 
       <div className="w-[90%] mx-auto relative z-10">
 
@@ -131,14 +124,14 @@ export default function About() {
             </motion.h3>
 
             <motion.p variants={fadeUp} className="mt-6 text-white/70 leading-relaxed text-sm md:text-base">
-              I'm Yousef Elsayed, a Frontend Developer specialized in building
+              I&apos;m Yousef Elsayed, a Frontend Developer specialized in building
               modern, high-performance web applications using React and Next.js.
               I focus on creating clean, responsive, and user-friendly interfaces
               while paying strong attention to performance and accessibility.
             </motion.p>
             <motion.p variants={fadeUp} className="mt-4 text-white/70 leading-relaxed text-sm md:text-base">
               I enjoy transforming ideas and designs into real, scalable products,
-              and I'm always eager to learn new technologies and improve my skills.
+              and I&apos;m always eager to learn new technologies and improve my skills.
             </motion.p>
 
             {/* Services — staggered slide in */}
@@ -178,15 +171,6 @@ export default function About() {
                     <AnimatedCounter value={stat.value} suffix="+" />
                   </div>
                   <div className="text-xs text-white/40 mt-1 uppercase tracking-wider">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Skill bars */}
-            <motion.div variants={stagger} className="space-y-5">
-              {bar.map((item, index) => (
-                <motion.div key={index} variants={skillSlide}>
-                  <SkillBar value={item.value} title={item.title} />
                 </motion.div>
               ))}
             </motion.div>

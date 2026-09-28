@@ -1,6 +1,5 @@
 "use client";
 import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
@@ -9,7 +8,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Button, TextareaAutosize, TextField } from "@mui/material";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 import WaveText from "../_Component/WaveText/WaveText";
 
@@ -27,32 +26,32 @@ const inputStyle = {
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.13 } } };
 const staggerFast = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const fadeUp = {
-  hidden: { opacity: 0, y: 35, filter: "blur(6px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 35 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 const lineGrow = {
   hidden: { scaleX: 0 },
   visible: { scaleX: 1, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 } },
 };
 const panelLeft = {
-  hidden: { opacity: 0, x: -60, filter: "blur(8px)" },
-  visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, x: -60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
 };
 const panelRight = {
-  hidden: { opacity: 0, x: 60, filter: "blur(8px)" },
-  visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, x: 60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
 };
 const infoItem = {
-  hidden: { opacity: 0, x: -25, filter: "blur(3px)" },
-  visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, x: -25 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
 const socialPop = {
   hidden: { opacity: 0, scale: 0.6, rotate: -10 },
   visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] } },
 };
 const fieldSlide = {
-  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const contactInfo = [
@@ -69,23 +68,32 @@ const socials = [
 
 export default function Contact() {
   const formRef = useRef(null);
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-    emailjs.sendForm("service_96piv85", "template_mbm3tgl", formRef.current, "KDMcigTsV45UGRrHb")
-      .then(
-        () => { toast.success("Message sent successfully ✅"); formRef.current.reset(); },
-        (error) => { toast.error("Something went wrong ❌"); console.error(error); }
-      );
+    try {
+      // loaded only when the form is submitted, not on page load
+      const emailjs = (await import("@emailjs/browser")).default;
+      await emailjs.sendForm("service_96piv85", "template_mbm3tgl", formRef.current, "KDMcigTsV45UGRrHb");
+      toast.success("Message sent successfully ✅");
+      formRef.current.reset();
+    } catch (error) {
+      toast.error("Something went wrong ❌");
+      console.error(error);
+    }
   };
 
   return (
     <section className="mt-32 w-[90%] mx-auto relative overflow-hidden">
+      <Toaster
+        position="top-right"
+        toastOptions={{ style: { background: "#121725", color: "#fff", border: "1px solid #A84CFF" } }}
+      />
 
       {/* Edge glows */}
-      <motion.div animate={{ opacity: [0.04, 0.08, 0.04], scale: [1, 1.1, 1] }} transition={{ duration: 8, repeat: Infinity }}
-        className="pointer-events-none absolute -top-20 -left-20 w-[350px] h-[350px] rounded-full bg-[#A84CFF] blur-3xl" />
-      <motion.div animate={{ opacity: [0.03, 0.07, 0.03], scale: [1, 1.08, 1] }} transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-        className="pointer-events-none absolute -bottom-20 -right-20 w-[300px] h-[300px] rounded-full bg-[#5F4BFF] blur-3xl" />
+      <div className="orb-fade pointer-events-none absolute -top-20 -left-20 w-[350px] h-[350px] rounded-full bg-[#A84CFF] blur-3xl"
+        style={{ "--dy": "0px", "--s": 1.1, "--o1": 0.04, "--o2": 0.08, "--dur": "8s" }} />
+      <div className="orb-fade pointer-events-none absolute -bottom-20 -right-20 w-[300px] h-[300px] rounded-full bg-[#5F4BFF] blur-3xl"
+        style={{ "--dy": "0px", "--s": 1.08, "--o1": 0.03, "--o2": 0.07, "--dur": "10s", "--delay": "2s" }} />
 
       {/* ── Title ── */}
       <motion.div className="mb-16 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>

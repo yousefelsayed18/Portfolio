@@ -35,7 +35,7 @@ function useTilt() {
 
 // ── Single Card ───────────────────────────────────────────────────────────────
 
-function ProjectCardItem({ project, index }) {
+function ProjectCardItem({ project, index, delayIndex = index }) {
   const { ref, rotateX, rotateY, onMouseMove, onMouseLeave } = useTilt();
   const [hovered, setHovered] = useState(false);
 
@@ -47,7 +47,7 @@ function ProjectCardItem({ project, index }) {
       transition={{
         duration: 0.7,
         ease: [0.22, 1, 0.36, 1],
-        delay: index * 0.12,
+        delay: delayIndex * 0.12,
       }}
       style={{ perspective: 900 }}
     >
@@ -104,12 +104,19 @@ function ProjectCardItem({ project, index }) {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="w-full h-full"
             >
-              <Image
-                src={project.src}
-                alt={project.title}
-                fill
-                className="object-cover"
-              />
+              {project.src ? (
+                <Image
+                  src={project.src}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 640px) 90vw, 420px"
+                  className="object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#3b1a6e] via-[#241247] to-[#151C2A] text-2xl font-bold text-white/80 tracking-wide">
+                  {project.title}
+                </div>
+              )}
             </motion.div>
 
             {/* Image overlay gradient */}
@@ -120,10 +127,10 @@ function ProjectCardItem({ project, index }) {
               initial={{ opacity: 0, scale: 0.7 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.12 + 0.4, duration: 0.4 }}
+              transition={{ delay: delayIndex * 0.12 + 0.4, duration: 0.4 }}
               className="absolute top-3 right-3 bg-[#A84CFF] text-white text-xs font-bold px-3 py-1 rounded-full"
             >
-              0{index + 1}
+              {String(index + 1).padStart(2, "0")}
             </motion.div>
           </div>
 
@@ -175,11 +182,33 @@ function ProjectCardItem({ project, index }) {
 // ── Export ────────────────────────────────────────────────────────────────────
 
 export default function ProjectCard() {
+  const [showAll, setShowAll] = useState(false);
+  const featured = ProjectData.filter((p) => p.featured);
+  const more = ProjectData.filter((p) => !p.featured);
+
   return (
     <>
-      {ProjectData.map((project, index) => (
-        <ProjectCardItem key={index} project={project} index={index} />
+      {featured.map((project, index) => (
+        <ProjectCardItem key={project.title} project={project} index={index} />
       ))}
+
+      {showAll &&
+        more.map((project, i) => (
+          <ProjectCardItem key={project.title} project={project} index={featured.length + i} delayIndex={i} />
+        ))}
+
+      {more.length > 0 && (
+        <div className="w-full flex justify-center mt-4">
+          <button
+            type="button"
+            aria-expanded={showAll}
+            onClick={() => setShowAll((v) => !v)}
+            className="px-8 py-3 rounded-full border border-[#A84CFF]/40 text-[#C27AFF] font-semibold text-sm tracking-wide cursor-pointer transition duration-300 hover:bg-[#A84CFF]/10 hover:border-[#A84CFF] hover:shadow-[0_0_30px_rgba(168,76,255,0.25)]"
+          >
+            {showAll ? "Show less ↑" : `More projects (${more.length}) ↓`}
+          </button>
+        </div>
+      )}
     </>
   );
 }

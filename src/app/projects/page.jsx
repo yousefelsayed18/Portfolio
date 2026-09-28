@@ -6,8 +6,8 @@ import WaveText from "../_Component/WaveText/WaveText";
 
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.15 } } };
 const fadeUp = {
-  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 const lineGrow = {
   hidden: { scaleX: 0 },
@@ -26,10 +26,9 @@ export default function Projects() {
       />
 
       {/* Ambient orb */}
-      <motion.div
-        animate={{ y: [0, -20, 0], opacity: [0.03, 0.07, 0.03] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute top-0 right-0 w-[500px] h-[300px] rounded-full bg-[#A84CFF] blur-3xl"
+      <div
+        className="orb-fade pointer-events-none absolute top-0 right-0 w-[500px] h-[300px] rounded-full bg-[#A84CFF] blur-3xl"
+        style={{ "--dy": "-20px", "--o1": 0.03, "--o2": 0.07, "--dur": "9s" }}
       />
 
       <div className="container relative z-10">

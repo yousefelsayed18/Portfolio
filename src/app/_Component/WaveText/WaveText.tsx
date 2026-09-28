@@ -1,5 +1,4 @@
-"use client";
-import { motion, Variants } from "framer-motion";
+import React from "react";
 
 type Props = {
   children?: string;
@@ -10,6 +9,7 @@ type Props = {
   style?: React.CSSProperties;
 };
 
+// Pure-CSS wave: no per-letter JS animation, so it costs no main-thread time.
 export default function WaveText({
   children = "",
   className = "",
@@ -20,18 +20,6 @@ export default function WaveText({
 }: Props) {
   const letters = String(children).split("");
 
-  const letterVariant: Variants = {
-    animate: (i: number) => ({
-      y: [0, -amplitude, 0, amplitude, 0],
-      transition: {
-        duration,
-        repeat: Infinity,
-        ease: "easeInOut" as const, // ✅ الحل هنا
-        delay: i * delay,
-      },
-    }),
-  };
-
   return (
     <span
       style={{ display: "inline-flex", flexWrap: "wrap", ...style }}
@@ -41,16 +29,21 @@ export default function WaveText({
         letter === " " ? (
           <span key={i} style={{ display: "inline-block", width: "0.3em" }} />
         ) : (
-          <motion.span
+          <span
             key={i}
-            custom={i}
-            variants={letterVariant}
-            animate="animate"
-            className={className}
-            style={{ display: "inline-block" }}
+            aria-hidden="true"
+            className={`wave-letter ${className}`}
+            style={
+              {
+                display: "inline-block",
+                "--amp": `${amplitude}px`,
+                "--dur": `${duration}s`,
+                animationDelay: `${(i * delay).toFixed(2)}s`,
+              } as React.CSSProperties
+            }
           >
             {letter}
-          </motion.span>
+          </span>
         )
       )}
     </span>

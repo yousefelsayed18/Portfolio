@@ -8,8 +8,8 @@ import WaveText from "../_Component/WaveText/WaveText";
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.13 } } };
 const staggerFast = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const fadeUp = {
-  hidden: { opacity: 0, y: 35, filter: "blur(5px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 35 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
 };
 const lineGrow = {
   hidden: { scaleX: 0 },
@@ -20,8 +20,8 @@ const emojiPop = {
   visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.7, ease: [0.34, 1.56, 0.64, 1] } },
 };
 const headReveal = {
-  hidden: { opacity: 0, y: 25, filter: "blur(4px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 25 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 const cardPop = {
   hidden: { opacity: 0, scale: 0.75, rotate: -3 },
@@ -32,22 +32,25 @@ const sections = [
   {
     emoji: "🛠️", title: "Core Foundations", color: "#FF9F43",
     skills: [
-      { label: "HTML", src: "/html.jpg" }, { label: "CSS", src: "/css.jpeg" },
-      { label: "JS", src: "/js.webp" }, { label: "Bootstrap", src: "/boot.jpeg" },
+      { label: "HTML", src: "/icons/html.webp" }, { label: "CSS", src: "/icons/css.webp" },
+      { label: "JavaScript", src: "/icons/js.webp" }, { label: "Bootstrap", src: "/icons/bootstrap.webp" },
+      { label: "Sass", src: "/icons/sass.svg" },
     ],
   },
   {
     emoji: "🎨", title: "Frontend Mastery", color: "#A84CFF",
     skills: [
-      { label: "TS", src: "/ts.png" }, { label: "React", src: "/react.png" },
-      { label: "Tailwind CSS", src: "/tailwand.png" }, { label: "Next.JS", src: "/next.jpg" },
-      { label: "Framer Motion", src: "/framer.jpeg" },
+      { label: "TypeScript", src: "/icons/ts.webp" }, { label: "React", src: "/icons/react.webp" },
+      { label: "Next.js", src: "/icons/next.webp" }, { label: "Redux Toolkit", src: "/icons/redux.svg" },
+      { label: "Material UI", src: "/icons/materialui.svg" }, { label: "Tailwind CSS", src: "/icons/tailwind.webp" },
+      { label: "Framer Motion", src: "/icons/framer.webp" },
     ],
   },
   {
     emoji: "⚙️", title: "DevOps & Data", color: "#26de81",
     skills: [
-      { label: "Git", src: "/git.png" }, { label: "Firebase", src: "/fire.png" },{ label: "Subabase", src: "/supa.jpg" },
+      { label: "Git", src: "/icons/git.webp" }, { label: "Firebase", src: "/icons/firebase.webp" },
+      { label: "Supabase", src: "/icons/supabase.webp" },
     ],
   },
 ];
@@ -64,7 +67,7 @@ function SkillSection({ emoji, title, color, skills, isFirst }) {
         <motion.div variants={emojiPop} className="inline-block">
           <motion.span
             animate={{ rotate: [0, -8, 8, -4, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: Math.random() * 2 }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: title.length % 3 }}
             className="text-5xl inline-block"
           >
             {emoji}
@@ -131,10 +134,10 @@ export default function Skills() {
       />
 
       {/* Animated ambient orbs */}
-      <motion.div animate={{ y: [0, -30, 0], scale: [1, 1.1, 1] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] rounded-full bg-[#A84CFF] opacity-[0.04] blur-3xl" />
-      <motion.div animate={{ y: [0, 25, 0], scale: [1, 1.08, 1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-        className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] rounded-full bg-[#5F4BFF] opacity-[0.03] blur-3xl" />
+      <div className="orb pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] rounded-full bg-[#A84CFF] opacity-[0.04] blur-3xl"
+        style={{ "--dy": "-30px", "--s": 1.1, "--dur": "10s" }} />
+      <div className="orb pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] rounded-full bg-[#5F4BFF] opacity-[0.03] blur-3xl"
+        style={{ "--dy": "25px", "--s": 1.08, "--dur": "12s", "--delay": "3s" }} />
 
       <div className="container w-[90%] mx-auto relative z-10">
 
